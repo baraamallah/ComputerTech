@@ -1,7 +1,9 @@
 
+"use client"; // Added for ScrollReveal
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Zap, BookOpen, ShieldCheck, Cpu } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 interface Feature {
   icon: LucideIcon;
@@ -34,31 +36,39 @@ const features: Feature[] = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-16 md:py-24 bg-background">
+    <section id="features" className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Why GameSmart PC?
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Discover the unique advantages of our all-in-one computing solution.
-          </p>
-        </div>
+        <ScrollReveal direction="up" delay={0}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+              Why GameSmart PC?
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              Discover the unique advantages of our all-in-one computing solution.
+            </p>
+          </div>
+        </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature) => (
-            <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-105 transform hover:-translate-y-1">
-              <CardHeader className="items-center text-center">
-                <div className="p-4 rounded-full bg-primary text-primary-foreground mb-4">
-                  <feature.icon size={32} strokeWidth={1.5}/>
-                </div>
-                <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription className="text-center text-muted-foreground">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+          {features.map((feature, index) => (
+            <ScrollReveal
+              key={feature.title}
+              direction="up"
+              delay={100 * index} // Staggered delay
+            >
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-105 transform hover:-translate-y-1 h-full">
+                <CardHeader className="items-center text-center">
+                  <div className="p-4 rounded-full bg-primary text-primary-foreground mb-4">
+                    <feature.icon size={32} strokeWidth={1.5}/>
+                  </div>
+                  <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <CardDescription className="text-center text-muted-foreground">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
       </div>

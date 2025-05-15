@@ -1,6 +1,9 @@
+
+"use client"; // Added for ScrollReveal
 import { ComponentCard } from "@/components/ComponentCard";
-import { Cpu, MemoryStick, HardDrive, CircuitBoard, Laptop2, Cog } from "lucide-react"; // Laptop2 for I/O, CircuitBoard for Motherboard
+import { Cpu, MemoryStick, HardDrive, CircuitBoard, Laptop2, Cog } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 interface ComponentDetail {
   id: string;
@@ -38,7 +41,7 @@ const components: ComponentDetail[] = [
     id: "gpu", 
     name: "GPU (Graphics Processing Unit)", 
     description: "NVIDIA GeForce RTX 4080 graphics card delivers breathtaking visuals and high frame rates in the latest games.", 
-    icon: Cog /* Using Cog as a placeholder, as there isn't a direct GPU icon in Lucide */
+    icon: Cog
   },
   { 
     id: "io", 
@@ -50,24 +53,31 @@ const components: ComponentDetail[] = [
 
 export function ComponentsSection() {
   return (
-    <section id="components" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/10">
+    <section id="components" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/10 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
-            Inside GameSmart PC
-          </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-            Explore the high-quality components that power your experience.
-          </p>
-        </div>
+        <ScrollReveal direction="up" delay={0}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+              Inside GameSmart PC
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
+              Explore the high-quality components that power your experience.
+            </p>
+          </div>
+        </ScrollReveal>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {components.map((component) => (
-            <ComponentCard
+          {components.map((component, index) => (
+            <ScrollReveal
               key={component.id}
-              icon={component.icon}
-              name={component.name}
-              description={component.description}
-            />
+              direction={index % 2 === 0 ? "left" : "right"} // Alternate direction
+              delay={100 * (index % 3)} // Stagger delay for each row item
+            >
+              <ComponentCard
+                icon={component.icon}
+                name={component.name}
+                description={component.description}
+              />
+            </ScrollReveal>
           ))}
         </div>
       </div>
