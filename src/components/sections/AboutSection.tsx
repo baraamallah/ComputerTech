@@ -6,7 +6,9 @@ import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function AboutSection() {
-  const posterImageUrl = "https://placehold.co/800x600.png";
+  // Updated to point to a local image.
+  // Place your image at public/images/gamesmart-vision-poster.png
+  const posterImageUrl = "/images/gamesmart-vision-poster.png"; 
 
   return (
     <section id="about" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/10 overflow-hidden">
@@ -32,7 +34,7 @@ export function AboutSection() {
                   width={800} 
                   height={600}
                   className="object-cover w-full h-64 md:h-full"
-                  data-ai-hint="futuristic tech"
+                  data-ai-hint="futuristic tech" // You can change this hint if your image content is different
                   priority={false} 
                 />
               </div>
