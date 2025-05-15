@@ -1,9 +1,11 @@
+
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { ComponentsSection } from "@/components/sections/ComponentsSection";
 import { TryItSection } from "@/components/sections/TryItSection";
+import { SafetyWellbeingSection } from "@/components/sections/SafetyWellbeingSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 
 export default function HomePage() {
@@ -15,6 +17,7 @@ export default function HomePage() {
         <FeaturesSection />
         <ComponentsSection />
         <TryItSection />
+        <SafetyWellbeingSection />
         <AboutSection />
       </main>
       <Footer />
