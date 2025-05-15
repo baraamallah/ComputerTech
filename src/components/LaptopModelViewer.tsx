@@ -28,7 +28,8 @@ const LaptopModelViewer: React.FC = () => {
       0.1, // Near clipping plane
       1000 // Far clipping plane
     );
-    camera.position.set(0, 0.5, 2.5); // Adjusted for a typical laptop model view
+    // Initial camera position, will be adjusted after model loads
+    camera.position.set(0, 1, 5); 
 
     // Renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -49,25 +50,47 @@ const LaptopModelViewer: React.FC = () => {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.screenSpacePanning = false;
-    controls.minDistance = 1;
-    controls.maxDistance = 10;
-    controls.target.set(0, 0.3, 0); // Adjust target to center of laptop
+    controls.minDistance = 0.5; // Allow closer zoom
+    controls.maxDistance = 20;  // Allow further zoom out
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.0;
+    controls.autoRotateSpeed = 0.8;
 
     // GLTF Loader
     const loader = new GLTFLoader();
-    // IMPORTANT: User needs to place their 'laptop.glb' model in the 'public/models/' directory.
     loader.load(
       '/models/laptop.glb',
       (gltf) => {
         const model = gltf.scene;
-        // Auto-centering and scaling logic has been removed as per request.
+        
+        // Auto-centering and scaling
+        const box = new THREE.Box3().setFromObject(model);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+
+        // Adjust model position to be centered at origin
+        model.position.x += (model.position.x - center.x);
+        model.position.y += (model.position.y - center.y);
+        model.position.z += (model.position.z - center.z);
+        
+        // Calculate scale factor to fit model in view
+        const maxSize = Math.max(size.x, size.y, size.z);
+        const fitHeightDistance = maxSize / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
+        const fitWidthDistance = fitHeightDistance / camera.aspect;
+        const distance = Math.max(fitHeightDistance, fitWidthDistance);
+        
+        // Adjust camera position
+        camera.position.copy(center); // Start at model center
+        camera.position.z += distance * 1.2; // Move camera back (1.2 is a small buffer)
+        camera.lookAt(center);
+        
+        // Update controls target
+        controls.target.copy(center);
+        
         scene.add(model);
         setIsLoading(false);
       },
-      undefined, // onProgress callback (optional)
-      (errorEvent) => { // Changed 'error' to 'errorEvent' to avoid conflict with useState 'error'
+      undefined, 
+      (errorEvent) => { 
         console.error('An error happened while loading the model:', errorEvent);
         setError('Failed to load 3D model. Please ensure "laptop.glb" is in public/models/.');
         setIsLoading(false);
@@ -96,13 +119,24 @@ const LaptopModelViewer: React.FC = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       if (currentMount && renderer.domElement) {
-         // Check if renderer.domElement is still a child before removing
         if (currentMount.contains(renderer.domElement)) {
             currentMount.removeChild(renderer.domElement);
         }
       }
       renderer.dispose();
-      // Dispose Three.js objects if necessary (geometry, material, textures)
+      // Dispose Three.js objects
+      scene.traverse((object) => {
+        if (object instanceof THREE.Mesh) {
+          if (object.geometry) object.geometry.dispose();
+          if (object.material) {
+            if (Array.isArray(object.material)) {
+              object.material.forEach(material => material.dispose());
+            } else {
+              object.material.dispose();
+            }
+          }
+        }
+      });
     };
   }, []);
 
