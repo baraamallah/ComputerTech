@@ -1,8 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LaptopModelViewer from "@/components/LaptopModelViewer";
 import { BinaryConverter } from "@/components/BinaryConverter";
-import { PolicyGenerator } from "@/components/PolicyGenerator";
-import { PackageOpen, Terminal, ShieldAlert } from "lucide-react";
+import { PackageOpen, Terminal } from "lucide-react";
 
 export function TryItSection() {
   return (
@@ -18,15 +17,12 @@ export function TryItSection() {
         </div>
 
         <Tabs defaultValue="model-viewer" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 max-w-2xl mx-auto">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 mb-8 max-w-lg mx-auto">
             <TabsTrigger value="model-viewer" className="text-sm sm:text-base py-2.5">
               <PackageOpen className="mr-2 h-5 w-5" /> 3D Model
             </TabsTrigger>
             <TabsTrigger value="binary-converter" className="text-sm sm:text-base py-2.5">
               <Terminal className="mr-2 h-5 w-5" /> Binary Tool
-            </TabsTrigger>
-            <TabsTrigger value="policy-generator" className="text-sm sm:text-base py-2.5">
-              <ShieldAlert className="mr-2 h-5 w-5" /> AI Policy
             </TabsTrigger>
           </TabsList>
 
@@ -42,9 +38,6 @@ export function TryItSection() {
           </TabsContent>
           <TabsContent value="binary-converter">
              <BinaryConverter />
-          </TabsContent>
-          <TabsContent value="policy-generator">
-            <PolicyGenerator />
           </TabsContent>
         </Tabs>
       </div>

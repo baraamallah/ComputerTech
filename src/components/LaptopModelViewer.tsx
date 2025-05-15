@@ -62,26 +62,13 @@ const LaptopModelViewer: React.FC = () => {
       '/models/laptop.glb',
       (gltf) => {
         const model = gltf.scene;
-        
-        // Center the model
-        const box = new THREE.Box3().setFromObject(model);
-        const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center); 
-        
-        // Scale model to fit a reasonable size
-        const size = box.getSize(new THREE.Vector3());
-        const maxDim = Math.max(size.x, size.y, size.z);
-        if (maxDim > 0) { // Avoid division by zero or NaN if model is empty
-            const scaleFactor = 1.5 / maxDim; // Adjust 1.5 to desired display size in world units
-            model.scale.set(scaleFactor, scaleFactor, scaleFactor);
-        }
-
+        // Auto-centering and scaling logic has been removed as per request.
         scene.add(model);
         setIsLoading(false);
       },
       undefined, // onProgress callback (optional)
-      (error) => {
-        console.error('An error happened while loading the model:', error);
+      (errorEvent) => { // Changed 'error' to 'errorEvent' to avoid conflict with useState 'error'
+        console.error('An error happened while loading the model:', errorEvent);
         setError('Failed to load 3D model. Please ensure "laptop.glb" is in public/models/.');
         setIsLoading(false);
       }

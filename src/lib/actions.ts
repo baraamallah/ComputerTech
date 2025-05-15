@@ -1,28 +1,28 @@
 "use server";
 
-import { generateBrowsingPolicy as generatePolicyFlow } from "@/ai/flows/generate-browsing-policy";
-import type { GenerateBrowsingPolicyInput, GenerateBrowsingPolicyOutput } from "@/ai/flows/generate-browsing-policy";
+// This file is intended for Next.js Server Actions.
+// Add your server actions here.
+// The previous generateBrowsingPolicyAction has been removed.
+
+/*
+Example of how you might structure future actions:
+
 import { z } from "zod";
 
-const PolicySchema = z.object({
-  age: z.coerce.number().min(1, "Age must be at least 1.").max(18, "Age must be 18 or younger."),
-  interests: z.string().min(3, "Interests must be at least 3 characters long.").max(200, "Interests are too long."),
+const ExampleSchema = z.object({
+  // ... your schema
 });
 
-interface ActionResult {
+interface ExampleActionResult {
   success: boolean;
-  data?: GenerateBrowsingPolicyOutput;
+  data?: any; // Replace 'any' with your actual data type
   error?: string;
   fieldErrors?: Record<string, string[] | undefined>;
 }
 
-export async function generateBrowsingPolicyAction(prevState: any, formData: FormData): Promise<ActionResult> {
-  const rawFormData = {
-    age: formData.get("age"),
-    interests: formData.get("interests"),
-  };
-
-  const validatedFields = PolicySchema.safeParse(rawFormData);
+export async function exampleAction(prevState: any, formData: FormData): Promise<ExampleActionResult> {
+  // ... your action logic
+  const validatedFields = ExampleSchema.safeParse(Object.fromEntries(formData.entries()));
 
   if (!validatedFields.success) {
     return {
@@ -31,14 +31,7 @@ export async function generateBrowsingPolicyAction(prevState: any, formData: For
       fieldErrors: validatedFields.error.flatten().fieldErrors,
     };
   }
-  
-  const inputData: GenerateBrowsingPolicyInput = validatedFields.data;
-
-  try {
-    const result = await generatePolicyFlow(inputData);
-    return { success: true, data: result };
-  } catch (error: any) {
-    console.error("Error generating browsing policy:", error);
-    return { success: false, error: error.message || "Failed to generate policy. Please try again." };
-  }
+  // ...
+  return { success: true };
 }
+*/
