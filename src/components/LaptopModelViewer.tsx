@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
@@ -61,16 +62,19 @@ const LaptopModelViewer: React.FC = () => {
       '/models/laptop.glb',
       (gltf) => {
         const model = gltf.scene;
-        // Center and scale model if necessary
+        
+        // Center the model
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
-        model.position.sub(center); // Center the model
+        model.position.sub(center); 
         
-        // Optional: Scale model to fit
-        // const size = box.getSize(new THREE.Vector3());
-        // const maxDim = Math.max(size.x, size.y, size.z);
-        // const scale = 1.5 / maxDim; // Adjust 1.5 to desired size
-        // model.scale.set(scale, scale, scale);
+        // Scale model to fit a reasonable size
+        const size = box.getSize(new THREE.Vector3());
+        const maxDim = Math.max(size.x, size.y, size.z);
+        if (maxDim > 0) { // Avoid division by zero or NaN if model is empty
+            const scaleFactor = 1.5 / maxDim; // Adjust 1.5 to desired display size in world units
+            model.scale.set(scaleFactor, scaleFactor, scaleFactor);
+        }
 
         scene.add(model);
         setIsLoading(false);
