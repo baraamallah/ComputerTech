@@ -42,39 +42,39 @@
   }
 
   .dark {
-    --background: 220 15% 10%; /* Very Dark Blue/Gray - "Gaming Mode" */
-    --foreground: 0 0% 95%; /* Light Gray/Off-White */
-    --card: 220 15% 15%;
-    --card-foreground: 0 0% 95%;
-    --popover: 220 15% 15%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 181 100% 55%; /* Brighter Electric Blue for dark mode */
+    --background: 220 25% 8%; /* Deeper, slightly more blue-gray */
+    --foreground: 210 20% 96%; /* Slightly softer, cooler white */
+    --card: 220 20% 13%; /* Darker, more distinct cards */
+    --card-foreground: 210 20% 92%; /* Match new foreground tone */
+    --popover: 220 20% 13%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 181 100% 52%; /* Adjusted for better pop on darker bg */
     --primary-foreground: 220 15% 10%; /* Darker text for contrast on bright blue */
     --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 85%;
     --muted: 220 15% 20%;
     --muted-foreground: 0 0% 60%;
-    --accent: 181 100% 60%; /* Vivid Electric Blue for hover/accent states in dark mode */
-    --accent-foreground: 220 15% 10%;
+    --accent: 181 100% 58%; /* Brighter accent for hover */
+    --accent-foreground: 220 15% 10%; /* Darker text for contrast on bright blue */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 25%;
-    --input: 220 15% 25%;
-    --ring: 181 100% 55%;
+    --border: 220 15% 18%; /* Darker, more subtle borders */
+    --input: 220 15% 22%; /* Slightly adjusted input border */
+    --ring: 181 100% 52%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 240 15% 8%; /* Adjusted to match new dark background */
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 181 100% 52%; /* Use main primary for sidebar in dark mode */
+    --sidebar-primary-foreground: 220 15% 10%;
+    --sidebar-accent: 220 20% 15%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 181 100% 52%;
   }
 }
 
@@ -84,7 +84,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans); /* Changed from --font-geist-sans */
+    font-family: var(--font-sans);
+  }
+  .dark body {
+    background-image: radial-gradient(ellipse at 70% 20%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
+                      radial-gradient(ellipse at 30% 80%, hsl(var(--accent) / 0.07) 0%, transparent 50%);
+    background-color: hsl(var(--background)); /* Ensure base background is still there */
   }
   html {
     scroll-behavior: smooth;
@@ -107,7 +112,7 @@
   background: hsl(var(--primary));
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.7);
+  background: hsl(var(--primary) / 0.8); /* Slightly more opaque for dark mode */
 }
 .dark ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary));

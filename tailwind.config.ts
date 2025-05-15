@@ -9,7 +9,7 @@ export default {
   ],
   theme: {
   	extend: {
-      fontFamily: { // Added this section
+      fontFamily: { 
         sans: ["var(--font-sans)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
@@ -91,7 +91,11 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+      boxShadow: {
+        'primary-glow': '0 0 10px 1px hsl(var(--primary) / 0.35), 0 0 20px 2px hsl(var(--primary) / 0.2)',
+        'primary-glow-hover': '0 0 15px 2px hsl(var(--primary) / 0.45), 0 0 30px 5px hsl(var(--primary) / 0.3)',
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
