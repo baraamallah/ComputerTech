@@ -1,3 +1,4 @@
+
 import { config } from 'dotenv';
 config();
 
@@ -5,3 +6,4 @@ config();
 // Import your Genkit flows here.
 // For example:
 // import '@/ai/flows/your-flow-name.ts';
+import '@/ai/flows/generate-vision-poster-flow.ts';

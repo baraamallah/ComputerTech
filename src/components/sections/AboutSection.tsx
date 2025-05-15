@@ -1,10 +1,43 @@
 
-"use client"; // Added for ScrollReveal
+"use client"; 
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { generateVisionPoster } from '@/ai/flows/generate-vision-poster-flow';
+import { Loader2, AlertTriangle } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 export function AboutSection() {
+  const [posterImageUrl, setPosterImageUrl] = useState<string>("https://placehold.co/800x600.png");
+  const [isLoadingPoster, setIsLoadingPoster] = useState(true);
+  const [posterError, setPosterError] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchPoster = async () => {
+      setIsLoadingPoster(true);
+      setPosterError(null);
+      try {
+        const result = await generateVisionPoster();
+        setPosterImageUrl(result.posterDataUri);
+      } catch (err) {
+        console.error("Failed to generate vision poster:", err);
+        setPosterError("Could not generate vision poster. Displaying default.");
+        // Keep the initial placeholder if generation fails
+        setPosterImageUrl("https://placehold.co/800x600.png"); 
+        toast({
+          variant: "destructive",
+          title: "Poster Generation Failed",
+          description: "Could not generate the vision poster. Displaying a default image.",
+        });
+      } finally {
+        setIsLoadingPoster(false);
+      }
+    };
+    fetchPoster();
+  }, [toast]);
+
   return (
     <section id="about" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/10 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,15 +55,27 @@ export function AboutSection() {
         <ScrollReveal direction="right" delay={200}>
           <Card className="shadow-xl overflow-hidden">
             <div className="md:flex">
-              <div className="md:w-1/2">
+              <div className="md:w-1/2 relative">
+                {isLoadingPoster && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-card/80 z-10">
+                    <Loader2 className="h-12 w-12 animate-spin text-primary" />
+                    <p className="mt-2 text-sm text-muted-foreground">Generating Vision Poster...</p>
+                  </div>
+                )}
+                {!isLoadingPoster && posterError && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-destructive/10 z-10 p-4">
+                    <AlertTriangle className="h-10 w-10 text-destructive mb-2" />
+                    <p className="text-xs text-destructive text-center">{posterError}</p>
+                  </div>
+                )}
                 <Image 
-                  src="https://placehold.co/800x600.png" 
-                  alt="GameSmart PC Concept" 
+                  src={posterImageUrl}
+                  alt="GameSmart PC Vision Poster" 
                   width={800} 
                   height={600}
                   className="object-cover w-full h-64 md:h-full"
-                  data-ai-hint="futuristic computer"
-                  priority={false} // Changed to false, let browser decide, helps LCP
+                  // Removed data-ai-hint as the image is now dynamic or a specific placeholder
+                  priority={false} 
                 />
               </div>
               <div className="md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
