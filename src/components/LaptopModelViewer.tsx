@@ -51,7 +51,7 @@ const LaptopModelViewer: React.FC = () => {
     controls.dampingFactor = 0.05;
     controls.screenSpacePanning = false;
     controls.minDistance = 0.5; // Allow closer zoom
-    controls.maxDistance = 20;  // Increased maxDistance for further zoom out
+    controls.maxDistance = 30;  // Increased maxDistance for further zoom out
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.8;
 
