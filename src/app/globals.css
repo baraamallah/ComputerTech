@@ -42,39 +42,41 @@
   }
 
   .dark {
-    --background: 220 25% 8%; /* Deeper, slightly more blue-gray */
-    --foreground: 210 20% 96%; /* Slightly softer, cooler white */
-    --card: 220 20% 13%; /* Darker, more distinct cards */
-    --card-foreground: 210 20% 92%; /* Match new foreground tone */
-    --popover: 220 20% 13%;
-    --popover-foreground: 210 20% 92%;
-    --primary: 181 100% 52%; /* Adjusted for better pop on darker bg */
-    --primary-foreground: 220 15% 10%; /* Darker text for contrast on bright blue */
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 0 0% 85%;
-    --muted: 220 15% 20%;
-    --muted-foreground: 0 0% 60%;
-    --accent: 181 100% 58%; /* Brighter accent for hover */
-    --accent-foreground: 220 15% 10%; /* Darker text for contrast on bright blue */
-    --destructive: 0 62.8% 30.6%;
+    /* Tokyo Dark Night Inspired Theme */
+    --background: 240 30% 10%; /* Deep Indigo/Dark Navy */
+    --foreground: 240 10% 85%; /* Light Bluish Grey */
+    --card: 240 25% 15%; /* Slightly Lighter Indigo */
+    --card-foreground: 240 10% 82%; /* Match new foreground tone */
+    --popover: 240 25% 15%;
+    --popover-foreground: 240 10% 82%;
+    --primary: 270 80% 65%; /* Vibrant Purple */
+    --primary-foreground: 240 10% 95%; /* Brighter text for contrast on purple */
+    --secondary: 240 20% 25%; /* Dark Muted Blue/Purple */
+    --secondary-foreground: 240 10% 75%;
+    --muted: 240 20% 25%;
+    --muted-foreground: 240 10% 60%;
+    --accent: 180 80% 50%; /* Bright Teal/Cyan */
+    --accent-foreground: 240 30% 10%; /* Dark text for contrast on bright accent */
+    --destructive: 0 70% 55%; /* Slightly adjusted destructive */
     --destructive-foreground: 0 0% 98%;
-    --border: 220 15% 18%; /* Darker, more subtle borders */
-    --input: 220 15% 22%; /* Slightly adjusted input border */
-    --ring: 181 100% 52%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 240 20% 25%; /* Darker, more subtle borders */
+    --input: 240 20% 30%; /* Slightly adjusted input border */
+    --ring: 270 80% 65%; /* Match new primary */
+    
+    --chart-1: 270 70% 60%;
+    --chart-2: 195 70% 55%;
+    --chart-3: 330 70% 60%;
+    --chart-4: 150 70% 50%;
+    --chart-5: 45 70% 60%;
 
-    --sidebar-background: 240 15% 8%; /* Adjusted to match new dark background */
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 181 100% 52%; /* Use main primary for sidebar in dark mode */
-    --sidebar-primary-foreground: 220 15% 10%;
-    --sidebar-accent: 220 20% 15%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 181 100% 52%;
+    --sidebar-background: 240 28% 12%;
+    --sidebar-foreground: 240 10% 80%;
+    --sidebar-primary: 270 80% 65%; /* Use main primary for sidebar in dark mode */
+    --sidebar-primary-foreground: 240 10% 95%;
+    --sidebar-accent: 240 25% 20%;
+    --sidebar-accent-foreground: 240 10% 88%;
+    --sidebar-border: 240 20% 22%;
+    --sidebar-ring: 270 80% 65%;
   }
 }
 
@@ -87,8 +89,8 @@
     font-family: var(--font-sans);
   }
   .dark body {
-    background-image: radial-gradient(ellipse at 70% 20%, hsl(var(--primary) / 0.08) 0%, transparent 50%),
-                      radial-gradient(ellipse at 30% 80%, hsl(var(--accent) / 0.07) 0%, transparent 50%);
+    background-image: radial-gradient(ellipse at 70% 20%, hsl(var(--primary) / 0.12) 0%, transparent 50%),
+                      radial-gradient(ellipse at 30% 80%, hsl(var(--accent) / 0.1) 0%, transparent 50%);
     background-color: hsl(var(--background)); /* Ensure base background is still there */
   }
   html {
@@ -104,6 +106,9 @@
 ::-webkit-scrollbar-track {
   background: hsl(var(--background) / 0.5);
 }
+.dark ::-webkit-scrollbar-track {
+  background: hsl(var(--card) / 0.7); /* Darker track for dark mode */
+}
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary) / 0.7);
   border-radius: 10px;
@@ -112,8 +117,8 @@
   background: hsl(var(--primary));
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.8); /* Slightly more opaque for dark mode */
+  background: hsl(var(--accent) / 0.8); /* Use accent for thumb in dark mode */
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary));
+  background: hsl(var(--accent));
 }

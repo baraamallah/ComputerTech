@@ -93,8 +93,8 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
       boxShadow: {
-        'primary-glow': '0 0 10px 1px hsl(var(--primary) / 0.35), 0 0 20px 2px hsl(var(--primary) / 0.2)',
-        'primary-glow-hover': '0 0 15px 2px hsl(var(--primary) / 0.45), 0 0 30px 5px hsl(var(--primary) / 0.3)',
+        'primary-glow': '0 0 15px 3px hsl(var(--primary) / 0.5), 0 0 30px 6px hsl(var(--primary) / 0.35)',
+        'primary-glow-hover': '0 0 25px 5px hsl(var(--primary) / 0.6), 0 0 50px 10px hsl(var(--primary) / 0.45)',
       }
   	}
   },
