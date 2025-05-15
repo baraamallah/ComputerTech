@@ -1,5 +1,5 @@
 
-"use client"; // Added for ScrollReveal
+"use client"; 
 import { ComponentCard } from "@/components/ComponentCard";
 import { Cpu, MemoryStick, HardDrive, CircuitBoard, Laptop2, Cog } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -41,7 +41,7 @@ const components: ComponentDetail[] = [
     id: "gpu", 
     name: "GPU (Graphics Processing Unit)", 
     description: "NVIDIA GeForce RTX 4080 graphics card delivers breathtaking visuals and high frame rates in the latest games.", 
-    icon: Cog
+    icon: Cog // Using Cog as a generic tech icon, can be replaced if a more specific GPU icon is available/desired
   },
   { 
     id: "io", 
@@ -69,8 +69,8 @@ export function ComponentsSection() {
           {components.map((component, index) => (
             <ScrollReveal
               key={component.id}
-              direction={index % 2 === 0 ? "left" : "right"} // Alternate direction
-              delay={100 * (index % 3)} // Stagger delay for each row item
+              direction={index % 2 === 0 ? "left" : "right"} 
+              delay={75 * (index % 3)} // Reduced delay
               once={false}
             >
               <ComponentCard
@@ -85,3 +85,5 @@ export function ComponentsSection() {
     </section>
   );
 }
+
+    

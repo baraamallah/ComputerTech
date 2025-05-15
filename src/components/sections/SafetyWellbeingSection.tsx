@@ -78,10 +78,10 @@ export function SafetyWellbeingSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="up" delay={200} once={false}>
+        <ScrollReveal direction="up" delay={100} once={false}> {/* Reduced delay for the accordion container */}
           <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
             {safetyTips.map((tip, index) => (
-              <ScrollReveal key={tip.id} direction="up" delay={100 * index} once={false}>
+              <ScrollReveal key={tip.id} direction="up" delay={50 * index} once={false}> {/* Reduced delay for items */}
                  <AccordionItem value={tip.id} className="mb-4 border bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                   <AccordionTrigger className="p-6 text-left hover:no-underline">
                     <div className="flex items-center text-lg font-medium text-primary">
@@ -103,3 +103,5 @@ export function SafetyWellbeingSection() {
     </section>
   );
 }
+
+    

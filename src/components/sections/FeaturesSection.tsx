@@ -1,5 +1,5 @@
 
-"use client"; // Added for ScrollReveal
+"use client"; 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Zap, BookOpen, ShieldCheck, Cpu } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -53,7 +53,7 @@ export function FeaturesSection() {
             <ScrollReveal
               key={feature.title}
               direction="up"
-              delay={100 * index} // Staggered delay
+              delay={50 * index} // Reduced delay
               once={false}
             >
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-105 transform hover:-translate-y-1 h-full">
@@ -76,3 +76,5 @@ export function FeaturesSection() {
     </section>
   );
 }
+
+    
