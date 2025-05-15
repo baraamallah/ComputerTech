@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
@@ -18,7 +19,7 @@ export function ComponentCard({ icon: Icon, name, description }: ComponentCardPr
     <TooltipProvider delayDuration={200}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Card className="text-center shadow-md hover:shadow-lg transition-shadow cursor-default h-full flex flex-col">
+          <Card className="text-center shadow-md hover:shadow-lg transition-all duration-300 cursor-default h-full flex flex-col hover:scale-105 transform hover:-translate-y-1">
             <CardHeader className="items-center pb-2">
               <div className="p-3 rounded-full bg-primary/10 text-primary mb-3">
                  <Icon size={36} strokeWidth={1.5} />

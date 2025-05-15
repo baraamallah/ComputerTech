@@ -1,3 +1,4 @@
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Zap, BookOpen, ShieldCheck, Cpu } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -45,7 +46,7 @@ export function FeaturesSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature) => (
-            <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+            <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-105 transform hover:-translate-y-1">
               <CardHeader className="items-center text-center">
                 <div className="p-3 rounded-full bg-primary/10 text-primary mb-4">
                   <feature.icon size={32} strokeWidth={1.5}/>
