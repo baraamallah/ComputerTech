@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Cpu, MemoryStick, HardDriveIcon, Zap, Award, School, ShoppingCart, CheckCircle } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import Link from "next/link";
+// Link import removed as it's no longer used for the button
 import {
   Tooltip,
   TooltipContent,
@@ -26,7 +26,7 @@ interface Configuration {
   description: string;
   priceRange: string;
   specs: SpecDetail[];
-  ctaLink?: string;
+  ctaText?: string; // Changed from ctaLink to ctaText as it's no longer a link
   themeColor: string; 
 }
 
@@ -43,7 +43,7 @@ const configurations: Configuration[] = [
       { icon: MemoryStick, text: "16GB DDR4 RAM" },
       { icon: HardDriveIcon, text: "512GB NVMe SSD" },
     ],
-    ctaLink: "#contact", 
+    ctaText: "Preorder Now", 
     themeColor: "text-accent", 
   },
   {
@@ -58,7 +58,7 @@ const configurations: Configuration[] = [
       { icon: MemoryStick, text: "32GB DDR5 RAM" },
       { icon: HardDriveIcon, text: "1TB Gen4 NVMe SSD" },
     ],
-    ctaLink: "#contact",
+    ctaText: "Preorder Now",
     themeColor: "text-primary", 
   },
   {
@@ -73,7 +73,7 @@ const configurations: Configuration[] = [
       { icon: MemoryStick, text: "32GB/64GB DDR5 High-Speed RAM" },
       { icon: HardDriveIcon, text: "2TB+ Gen5 NVMe SSD" },
     ],
-    ctaLink: "#contact",
+    ctaText: "Preorder Now",
     themeColor: "text-destructive dark:text-red-400", // Adjusted for dark mode visibility
   },
 ];
@@ -98,7 +98,7 @@ export function ConfigurationsSection() {
             <ScrollReveal
               key={config.id}
               direction={index % 2 === 0 ? "left" : "right"}
-              delay={75 * (index % 3)} // Reduced delay
+              delay={50 * (index % 3)} 
               once={false}
             >
               <Card className="shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col h-full group hover:border-primary/50 dark:hover:border-primary/70 transform hover:scale-[1.03] hover:-translate-y-1.5">
@@ -123,15 +123,17 @@ export function ConfigurationsSection() {
                     ))}
                   </ul>
                 </CardContent>
-                {config.ctaLink && (
+                {config.ctaText && (
                   <CardFooter className="pt-6 justify-center">
                     <TooltipProvider delayDuration={100}>
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <Button asChild className="w-full sm:w-auto shadow-lg group-hover:shadow-primary/40 transition-all duration-300" variant="default">
-                            <Link href={config.ctaLink}>
-                              <ShoppingCart size={18} className="mr-2" /> Preorder Now
-                            </Link>
+                          <Button 
+                            className="w-full sm:w-auto shadow-lg group-hover:shadow-primary/40 transition-all duration-300" 
+                            variant="default"
+                            aria-disabled="true" // Indicates the button is not currently interactive
+                          >
+                            <ShoppingCart size={18} className="mr-2" /> {config.ctaText}
                           </Button>
                         </TooltipTrigger>
                         <TooltipContent side="bottom">
@@ -149,5 +151,3 @@ export function ConfigurationsSection() {
     </section>
   );
 }
-
-    
