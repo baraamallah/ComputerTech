@@ -21,7 +21,7 @@ export function ComponentCard({ icon: Icon, name, description }: ComponentCardPr
         <TooltipTrigger asChild>
           <Card className="text-center shadow-md hover:shadow-lg transition-all duration-300 cursor-default h-full flex flex-col hover:scale-105 transform hover:-translate-y-1">
             <CardHeader className="items-center pb-2">
-              <div className="p-3 rounded-full bg-primary/10 text-primary mb-3">
+              <div className="p-4 rounded-full bg-primary text-primary-foreground mb-4">
                  <Icon size={36} strokeWidth={1.5} />
               </div>
               <CardTitle className="text-lg font-medium">{name}</CardTitle>
