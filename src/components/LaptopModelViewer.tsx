@@ -80,7 +80,7 @@ const LaptopModelViewer: React.FC = () => {
         
         // Adjust camera position
         camera.position.copy(center); // Start at model center
-        camera.position.z += distance * 1.6; // Move camera back (1.6 provides a comfortable margin)
+        camera.position.z += distance * 2.0; // Move camera back (2.0 provides a comfortable margin)
         camera.lookAt(center);
         
         // Update controls target
