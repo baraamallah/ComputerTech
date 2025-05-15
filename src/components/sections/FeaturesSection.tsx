@@ -38,7 +38,7 @@ export function FeaturesSection() {
   return (
     <section id="features" className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" delay={0}>
+        <ScrollReveal direction="up" delay={0} once={false}>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               Why GameSmart PC?
@@ -54,6 +54,7 @@ export function FeaturesSection() {
               key={feature.title}
               direction="up"
               delay={100 * index} // Staggered delay
+              once={false}
             >
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col hover:scale-105 transform hover:-translate-y-1 h-full">
                 <CardHeader className="items-center text-center">

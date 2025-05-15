@@ -10,7 +10,7 @@ export function TryItSection() {
   return (
     <section id="try-it" className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" delay={0}>
+        <ScrollReveal direction="up" delay={0} once={false}>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               Experience GameSmart PC
@@ -21,7 +21,7 @@ export function TryItSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="up" delay={200}>
+        <ScrollReveal direction="up" delay={200} once={false}>
           <Tabs defaultValue="model-viewer" className="w-full">
             <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 mb-8 max-w-lg mx-auto">
               <TabsTrigger value="model-viewer" className="text-sm sm:text-base py-2.5">

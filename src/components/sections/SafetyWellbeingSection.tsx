@@ -67,7 +67,7 @@ export function SafetyWellbeingSection() {
   return (
     <section id="safety" className="py-16 md:py-24 bg-background overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" delay={0}>
+        <ScrollReveal direction="up" delay={0} once={false}>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               Digital Wellbeing & Safety
@@ -78,7 +78,7 @@ export function SafetyWellbeingSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="up" delay={200}>
+        <ScrollReveal direction="up" delay={200} once={false}>
           <Accordion type="single" collapsible className="w-full max-w-3xl mx-auto">
             {safetyTips.map((tip, index) => (
               <ScrollReveal key={tip.id} direction="up" delay={100 * index} once={false}>

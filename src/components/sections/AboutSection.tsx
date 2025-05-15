@@ -13,7 +13,7 @@ export function AboutSection() {
   return (
     <section id="about" className="py-16 md:py-24 bg-muted/30 dark:bg-muted/10 overflow-hidden">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" delay={0}>
+        <ScrollReveal direction="up" delay={0} once={false}>
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
               About GameSmart PC
@@ -24,7 +24,7 @@ export function AboutSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="right" delay={200}>
+        <ScrollReveal direction="right" delay={200} once={false}>
           <Card className="shadow-xl overflow-hidden">
             <div className="md:flex">
               <div className="md:w-1/2 relative">
